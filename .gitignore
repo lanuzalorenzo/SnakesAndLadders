@@ -6,3 +6,7 @@
 /.vs
 /SnakesAndLadders/.vs/SnakesAndLadders/FileContentIndex
 /SnakesAndLadders/SnakesAndLadders.Models/obj
+/SnakesAndLadders/SnakesAndLadders.Models/bin/Debug/net6.0
+/SnakesAndLadders/SnakesAndLadders.MoveLibrary.Contracts/obj
+/SnakesAndLadders/SnakesAndLadders.MoveTokenTest/bin/Debug/net6.0
+/SnakesAndLadders/SnakesAndLadders.MoveTokenTest/obj
