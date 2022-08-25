@@ -1,12 +1,13 @@
 using SnakesAndLadders.Models;
 using SnakesAndLadders.MoveLibrary.Contracts;
+using SnakesAndLadders.MoveLibrary.Impl;
 
 namespace SnakesAndLadders.MoveTokenTest
 {
     public class Tests
     {
         private Board _board;
-        private IList<Square> _squares =  new List<Square>();
+        private IList<Square> _squares = new List<Square>();
         private IMoveTokenService _moveTokenService;
 
         [SetUp]
@@ -22,6 +23,7 @@ namespace SnakesAndLadders.MoveTokenTest
                     _squares.Add(new(i, i == 0, i == 20));
             }
             _board = new Board(2, _squares);
+            _moveTokenService = new MoveTokenService();
         }
 
         [Test]
@@ -32,16 +34,23 @@ namespace SnakesAndLadders.MoveTokenTest
         }
 
         [Test]
-        public void Test_MoveToken()
+        public void Test_MoveTokenWithOutSnakeOrLadder()
         {
             var player = _board.Players.FirstOrDefault(player => player.Id == 1);
-            
+
             Assert.That(player, Is.Not.Null);
 
             var currentPosition = player.CurrentPosition;
-            _moveTokenService.MoveToken(_board, 1, 3);
+            _moveTokenService.MoveToken(_board, 3, 1);
 
             Assert.That(player.CurrentPosition, Is.EqualTo(currentPosition + 3));
+        }
+
+
+        [Test]
+        public void Test_PlayerNotExists()
+        {
+            Assert.Throws<ArgumentException>(() => _moveTokenService.MoveToken(_board, 3, 5));
         }
     }
 }

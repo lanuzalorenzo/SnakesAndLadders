@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SnakesAndLadders.Models\SnakesAndLadders.Models.csproj" />
     <ProjectReference Include="..\SnakesAndLadders.MoveLibrary.Contracts\SnakesAndLadders.MoveLibrary.Contracts.csproj" />
+    <ProjectReference Include="..\SnakesAndLadders.MoveLibrary.Impl\SnakesAndLadders.MoveLibrary.Impl.csproj" />
   </ItemGroup>
 
 </Project>

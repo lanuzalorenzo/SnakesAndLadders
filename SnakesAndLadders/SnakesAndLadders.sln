@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnakesAndLadders.MoveLibrar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnakesAndLadders.MoveTokenTest", "SnakesAndLadders.MoveTokenTest\SnakesAndLadders.MoveTokenTest.csproj", "{F6C6DE75-F2A7-4EAC-8C86-54125870AC76}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnakesAndLadders.MoveLibrary.Impl", "SnakesAndLadders.MoveLibrary.Impl\SnakesAndLadders.MoveLibrary.Impl.csproj", "{196753E3-DB50-454D-B3CB-AB90D5C42B7E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F6C6DE75-F2A7-4EAC-8C86-54125870AC76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6C6DE75-F2A7-4EAC-8C86-54125870AC76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6C6DE75-F2A7-4EAC-8C86-54125870AC76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{196753E3-DB50-454D-B3CB-AB90D5C42B7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{196753E3-DB50-454D-B3CB-AB90D5C42B7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{196753E3-DB50-454D-B3CB-AB90D5C42B7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{196753E3-DB50-454D-B3CB-AB90D5C42B7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

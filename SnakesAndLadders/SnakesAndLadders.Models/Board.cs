@@ -6,14 +6,17 @@
 
         public IEnumerable<Square> Squares { get; } = Enumerable.Empty<Square>();
 
+        public int InitialValue { get; set; }
+        public int GoalPosition { get; set; }
+
         //Count of players must be defined by primary service
         //Board and squares can be defined by BD, file text, ...
-        public Board(int countOfPlayers, IEnumerable<Square> squares) 
+        public Board(int countOfPlayers, IEnumerable<Square> squares)
         {
 
             var playersToAdd = new List<Player>();
 
-            for (var i = 0; i<countOfPlayers; i++)
+            for (var i = 0; i < countOfPlayers; i++)
             {
                 playersToAdd.Add(new Player()
                 {
@@ -23,7 +26,9 @@
             }
 
             Players = playersToAdd;
-            Squares = squares;
+            Squares = squares.OrderBy(square => square.Position);
+            InitialValue = 1;
+            GoalPosition = squares?.LastOrDefault()?.Position ?? default;
         }
     }
 }
