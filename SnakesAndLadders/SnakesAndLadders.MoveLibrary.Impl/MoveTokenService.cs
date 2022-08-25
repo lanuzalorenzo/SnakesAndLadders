@@ -5,6 +5,25 @@ namespace SnakesAndLadders.MoveLibrary.Impl
 {
     public class MoveTokenService : IMoveTokenService
     {
+        public bool IsCurrentPositionSnake(Board board, int playerId, out Snake? snakeSquare)
+        {
+            var currentPlayer = board?.Players?.FirstOrDefault(player => playerId == player.Id);
+            if (currentPlayer == default)
+                throw new ArgumentException("Parameters are not valid.");
+
+            var square = board?.Squares?.FirstOrDefault(square => square.Position == currentPlayer.CurrentPosition);
+            if (square == default)
+                throw new ArgumentException("Parameters are not valid.");
+
+            if(square is Snake)
+            {
+                snakeSquare = (Snake)square;
+                return true;
+            }
+            snakeSquare = default;
+            return false;
+        }
+
         public void MoveToken(Board board, int diceValue, int playerId)
         {
             var currentPlayer = board?.Players?.FirstOrDefault(player => playerId == player.Id);

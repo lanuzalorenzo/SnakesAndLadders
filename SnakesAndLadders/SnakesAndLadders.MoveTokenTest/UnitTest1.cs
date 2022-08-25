@@ -9,6 +9,7 @@ namespace SnakesAndLadders.MoveTokenTest
         private Board _board;
         private IList<Square> _squares = new List<Square>();
         private IMoveTokenService _moveTokenService;
+        private IManageTurnService _manageTurn;
 
         [SetUp]
         public void Setup()
@@ -18,7 +19,7 @@ namespace SnakesAndLadders.MoveTokenTest
                 if (i % 5 == 0)
                     _squares.Add(new Snake(i, i - 3));
                 else if (i % 7 == 0)
-                    _squares.Add(new Snake(i, i - 3));
+                    _squares.Add(new Ladder(i, i + 4));
                 else
                     _squares.Add(new(i, i == 0, i == 20));
             }
@@ -51,6 +52,19 @@ namespace SnakesAndLadders.MoveTokenTest
         public void Test_PlayerNotExists()
         {
             Assert.Throws<ArgumentException>(() => _moveTokenService.MoveToken(_board, 3, 5));
+        }
+
+        [Test]
+        public void Test_MoveTokenWithSnake()
+        {
+            var player = _board.Players.FirstOrDefault(player => player.Id == 1);
+
+            Assert.That(player, Is.Not.Null);
+
+            var currentPosition = player.CurrentPosition;
+            _manageTurn.ManagePlayerTurn(_board, 5, 1);
+
+            Assert.That(player.CurrentPosition, Is.EqualTo(currentPosition + 5 - 3));
         }
     }
 }

@@ -7,5 +7,6 @@ namespace SnakesAndLadders.MoveLibrary.Contracts
         Board StartGame(int playersCount, IEnumerable<Square> squares);
         void MoveToken(Board board, int diceValue, int playerId);
         bool PlayerWin(Board board, int playerId);
+        bool IsCurrentPositionSnake(Board board, int playerId, out Snake? snakeSquare);
     }
 }
