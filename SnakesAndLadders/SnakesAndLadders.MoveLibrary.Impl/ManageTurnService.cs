@@ -12,7 +12,7 @@ namespace SnakesAndLadders.MoveLibrary.Impl
             _moveTokenService = moveTokenService;
         }
 
-        public void ManagePlayerTurn(Board board, int diceValue, int playerId)
+        public bool ManagePlayerTurn(Board board, int diceValue, int playerId)
         {
             var player = board.Players.FirstOrDefault(player => player.Id == playerId);
             if (player != default)
@@ -29,6 +29,7 @@ namespace SnakesAndLadders.MoveLibrary.Impl
                     player.CurrentPosition = ladderSquare.PositionToMove;
             }
 
+            return _moveTokenService.PlayerWin(board, playerId);
         }
     }
 }

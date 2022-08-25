@@ -7,7 +7,7 @@ namespace SnakesAndLadders.MoveTokenTest
     public class Tests
     {
         private Board _board;
-        private IList<Square> _squares = new List<Square>();
+        private readonly IList<Square> _squares = new List<Square>();
         private IMoveTokenService _moveTokenService;
         private IManageTurnService _manageTurn;
 
@@ -16,7 +16,7 @@ namespace SnakesAndLadders.MoveTokenTest
         {
             for (var i = 1; i <= 20; i++)
             {
-                if (i % 5 == 0)
+                if (i % 5 == 0 && i != 20)
                     _squares.Add(new Snake(i, i - 3));
                 else if (i % 7 == 0)
                     _squares.Add(new Ladder(i, i + 4));
@@ -68,7 +68,6 @@ namespace SnakesAndLadders.MoveTokenTest
             Assert.That(player.CurrentPosition, Is.EqualTo(2));
         }
 
-
         [Test]
         public void Test_MoveTokenWithLadder()
         {
@@ -78,6 +77,31 @@ namespace SnakesAndLadders.MoveTokenTest
 
             _manageTurn.ManagePlayerTurn(_board, 6, 1);
             Assert.That(player.CurrentPosition, Is.EqualTo(11));
+        }
+
+        [Test]
+        public void Test_PlayerWins()
+        {
+            _manageTurn.ManagePlayerTurn(_board, 6, 1);
+            
+            //Position 11
+            _manageTurn.ManagePlayerTurn(_board, 6, 1);
+            
+            //Position 17
+            Assert.IsTrue(_manageTurn.ManagePlayerTurn(_board, 3, 1));
+        }
+
+        [Test]
+        public void Test_FinalSquareMustNotBeSnake()
+        {
+            Assert.That(_board.Squares.LastOrDefault() is Snake, Is.False);
+        }
+
+
+        [Test]
+        public void Test_FinalSquareMustNotBeLadder()
+        {
+            Assert.That(_board.Squares.LastOrDefault() is Ladder, Is.False);
         }
     }
 }

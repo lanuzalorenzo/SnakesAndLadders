@@ -56,7 +56,11 @@ namespace SnakesAndLadders.MoveLibrary.Impl
 
         public bool PlayerWin(Board board, int playerId)
         {
-            throw new NotImplementedException();
+            var currentPlayer = board?.Players?.FirstOrDefault(player => playerId == player.Id);
+            if (currentPlayer == default || board == default)
+                throw new ArgumentException("Parameters are not valid.");
+
+            return board.GoalPosition == currentPlayer.CurrentPosition;
         }
 
         public Board StartGame(int playersCount, IEnumerable<Square> squares) => new Board(playersCount, squares);
