@@ -63,6 +63,6 @@ namespace SnakesAndLadders.MoveLibrary.Impl
             return board.GoalPosition == currentPlayer.CurrentPosition;
         }
 
-        public Board StartGame(int playersCount, IEnumerable<Square> squares) => new Board(playersCount, squares);
+        public Board StartGame(IEnumerable<int> playersList, IEnumerable<Square> squares) => new Board(playersList, squares);
     }
 }

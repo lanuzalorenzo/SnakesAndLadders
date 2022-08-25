@@ -11,16 +11,15 @@
 
         //Count of players must be defined by primary service
         //Board and squares can be defined by BD, file text, ...
-        public Board(int countOfPlayers, IEnumerable<Square> squares)
+        public Board(IEnumerable<int> playersList, IEnumerable<Square> squares)
         {
-
             var playersToAdd = new List<Player>();
 
-            for (var i = 0; i < countOfPlayers; i++)
+            foreach (var playerId in playersList)
             {
                 playersToAdd.Add(new Player()
                 {
-                    Id = i,
+                    Id = playerId,
                     CurrentPosition = 1
                 });
             }

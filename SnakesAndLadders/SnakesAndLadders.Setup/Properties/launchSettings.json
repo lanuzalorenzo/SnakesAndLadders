@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "SnakesAndLadders.Setup": {
+      "commandName": "Project",
+      "commandLineArgs": "2"
+    },
+    "Profile 1": {
+      "commandName": "Executable"
+    }
+  }
+}
