@@ -5,7 +5,7 @@ namespace SnakesAndLadders.MoveTokenTest
     public class Tests
     {
         private Board _board;
-        private IList<Square> _squares;
+        private IList<Square> _squares =  new List<Square>();
 
         [SetUp]
         public void Setup()
@@ -23,9 +23,10 @@ namespace SnakesAndLadders.MoveTokenTest
         }
 
         [Test]
-        public void Test1()
+        public void Test_StartGame()
         {
-            Assert.Pass();
+            var board = new Board(2, _squares);
+            Assert.That(board.Players.All(player => player.CurrentPosition == 1), Is.True);
         }
     }
 }
