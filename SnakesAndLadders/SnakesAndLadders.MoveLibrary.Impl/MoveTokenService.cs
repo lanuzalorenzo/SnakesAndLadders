@@ -63,6 +63,18 @@ namespace SnakesAndLadders.MoveLibrary.Impl
             return board.GoalPosition == currentPlayer.CurrentPosition;
         }
 
-        public Board StartGame(IEnumerable<int> playersList, IEnumerable<Square> squares) => new Board(playersList, squares);
+        public Board StartGame(IEnumerable<int> playersList, IEnumerable<Square> squares) {
+            var board = new Board(playersList, squares);
+            if (board.Squares.LastOrDefault() is Snake)
+                throw new ArgumentException("Last square must not be snake");
+            else if (board.Squares.LastOrDefault() is Ladder)
+                throw new ArgumentException("Last square must not be Ladder");
+            else if (board.Squares.FirstOrDefault() is Snake)
+                throw new ArgumentException("First square must not be snake");
+            else if (board.Squares.FirstOrDefault() is Ladder)
+                throw new ArgumentException("First square must not be Ladder");
+
+            else return board;
+        }
     }
 }

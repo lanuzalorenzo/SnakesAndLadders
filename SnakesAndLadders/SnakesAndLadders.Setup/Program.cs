@@ -9,15 +9,16 @@ namespace SnakesAndLadders.Setup // Note: actual namespace depends on the projec
         static void Main(string[] args)
         {
             var playersCount = 3;
+            var squaresCount = 20;
             //Must be dependency inyection
             var moveTokenService = new MoveTokenService();
             var manageTurnService = new ManageTurnService(moveTokenService);
 
             //Must obtanied by BD, Json, text file, ...
             var squares = new List<Square>();
-            for (var i = 1; i <= 20; i++)
+            for (var i = 1; i <= squaresCount; i++)
             {
-                if (i % 5 == 0 && i != 20)
+                if (i % 5 == 0 && i != squaresCount)
                     squares.Add(new Snake(i, i - 3));
                 else if (i % 7 == 0)
                     squares.Add(new Ladder(i, i + 4));
