@@ -1,4 +1,5 @@
 using SnakesAndLadders.Models;
+using SnakesAndLadders.MoveLibrary.Contracts;
 
 namespace SnakesAndLadders.MoveTokenTest
 {
@@ -6,6 +7,7 @@ namespace SnakesAndLadders.MoveTokenTest
     {
         private Board _board;
         private IList<Square> _squares =  new List<Square>();
+        private IMoveTokenService _moveTokenService;
 
         [SetUp]
         public void Setup()
@@ -27,6 +29,19 @@ namespace SnakesAndLadders.MoveTokenTest
         {
             var board = new Board(2, _squares);
             Assert.That(board.Players.All(player => player.CurrentPosition == 1), Is.True);
+        }
+
+        [Test]
+        public void Test_MoveToken()
+        {
+            var player = _board.Players.FirstOrDefault(player => player.Id == 1);
+            
+            Assert.That(player, Is.Not.Null);
+
+            var currentPosition = player.CurrentPosition;
+            _moveTokenService.MoveToken(_board, 1, 3);
+
+            Assert.That(player.CurrentPosition, Is.EqualTo(currentPosition + 3));
         }
     }
 }

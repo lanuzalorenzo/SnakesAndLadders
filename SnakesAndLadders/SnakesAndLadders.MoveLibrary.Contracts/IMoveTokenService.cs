@@ -5,7 +5,7 @@ namespace SnakesAndLadders.MoveLibrary.Contracts
     public interface IMoveTokenService
     {
         Board StartGame();
-        void MoveToken(int diceValue, int playerId);
-        bool PlayerWin(int playerId);
+        void MoveToken(Board board, int diceValue, int playerId);
+        bool PlayerWin(Board board, int playerId);
     }
 }
