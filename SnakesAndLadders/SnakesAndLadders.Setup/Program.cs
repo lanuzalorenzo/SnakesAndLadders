@@ -8,8 +8,17 @@ namespace SnakesAndLadders.Setup // Note: actual namespace depends on the projec
     {
         static void Main(string[] args)
         {
-            var playersCount = 3;
+            Console.Write("Select players count: ");
+            var playersValue = Console.ReadLine();
+
+            var isValidParameter = int.TryParse(playersValue, out var playersCount);
+
+            if (!isValidParameter)
+                throw new ArgumentException("Players count must be a valid number");
+
+            //Must be defined in config
             var squaresCount = 20;
+            
             //Must be dependency inyection
             var moveTokenService = new MoveTokenService();
             var manageTurnService = new ManageTurnService(moveTokenService);
