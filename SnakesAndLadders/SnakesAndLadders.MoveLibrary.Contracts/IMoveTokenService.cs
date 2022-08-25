@@ -8,5 +8,6 @@ namespace SnakesAndLadders.MoveLibrary.Contracts
         void MoveToken(Board board, int diceValue, int playerId);
         bool PlayerWin(Board board, int playerId);
         bool IsCurrentPositionSnake(Board board, int playerId, out Snake? snakeSquare);
+        bool IsCurrentPositionLadder(Board board, int playerId, out Ladder? ladderSquare);
     }
 }

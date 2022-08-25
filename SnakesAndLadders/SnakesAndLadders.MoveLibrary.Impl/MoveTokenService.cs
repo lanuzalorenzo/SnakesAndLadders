@@ -24,6 +24,25 @@ namespace SnakesAndLadders.MoveLibrary.Impl
             return false;
         }
 
+        public bool IsCurrentPositionLadder(Board board, int playerId, out Ladder? ladderSquare)
+        {
+            var currentPlayer = board?.Players?.FirstOrDefault(player => playerId == player.Id);
+            if (currentPlayer == default)
+                throw new ArgumentException("Parameters are not valid.");
+
+            var square = board?.Squares?.FirstOrDefault(square => square.Position == currentPlayer.CurrentPosition);
+            if (square == default)
+                throw new ArgumentException("Parameters are not valid.");
+
+            if (square is Ladder)
+            {
+                ladderSquare = (Ladder)square;
+                return true;
+            }
+            ladderSquare = default;
+            return false;
+        }
+
         public void MoveToken(Board board, int diceValue, int playerId)
         {
             var currentPlayer = board?.Players?.FirstOrDefault(player => playerId == player.Id);

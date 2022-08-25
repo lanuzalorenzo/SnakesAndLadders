@@ -25,6 +25,9 @@ namespace SnakesAndLadders.MoveTokenTest
             }
             _board = new Board(2, _squares);
             _moveTokenService = new MoveTokenService();
+
+            //MoveNextService inyection should be a mock
+            _manageTurn = new ManageTurnService(_moveTokenService);
         }
 
         [Test]
@@ -61,10 +64,20 @@ namespace SnakesAndLadders.MoveTokenTest
 
             Assert.That(player, Is.Not.Null);
 
-            var currentPosition = player.CurrentPosition;
-            _manageTurn.ManagePlayerTurn(_board, 5, 1);
+            _manageTurn.ManagePlayerTurn(_board, 4, 1);
+            Assert.That(player.CurrentPosition, Is.EqualTo(2));
+        }
 
-            Assert.That(player.CurrentPosition, Is.EqualTo(currentPosition + 5 - 3));
+
+        [Test]
+        public void Test_MoveTokenWithLadder()
+        {
+            var player = _board.Players.FirstOrDefault(player => player.Id == 1);
+
+            Assert.That(player, Is.Not.Null);
+
+            _manageTurn.ManagePlayerTurn(_board, 6, 1);
+            Assert.That(player.CurrentPosition, Is.EqualTo(11));
         }
     }
 }

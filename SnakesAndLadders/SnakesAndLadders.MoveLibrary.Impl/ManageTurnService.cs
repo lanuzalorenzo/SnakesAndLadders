@@ -14,15 +14,21 @@ namespace SnakesAndLadders.MoveLibrary.Impl
 
         public void ManagePlayerTurn(Board board, int diceValue, int playerId)
         {
-            _moveTokenService.MoveToken(board, diceValue, playerId);
-
-            var isSnake = _moveTokenService.IsCurrentPositionSnake(board, playerId, out var snakeSquare);
-            if (isSnake)
+            var player = board.Players.FirstOrDefault(player => player.Id == playerId);
+            if (player != default)
             {
-                var player = board.Players.FirstOrDefault(player => player.Id == playerId);
-                if (player != default && snakeSquare != default)
+                _moveTokenService.MoveToken(board, diceValue, playerId);
+
+                //The destination square is assumed to be neither a ladder nor a snake.
+                var isSnake = _moveTokenService.IsCurrentPositionSnake(board, playerId, out var snakeSquare);
+                if (isSnake && snakeSquare != default)
                     player.CurrentPosition = snakeSquare.PositionToMove;
+
+                var isLadder = _moveTokenService.IsCurrentPositionLadder(board, playerId, out var ladderSquare);
+                if (isLadder && ladderSquare != default)
+                    player.CurrentPosition = ladderSquare.PositionToMove;
             }
+
         }
     }
 }
